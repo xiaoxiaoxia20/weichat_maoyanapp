@@ -1,0 +1,124 @@
+<!--index.wxml-->
+<view class="movieContainer">
+  <!-- 选择搜索区域 -->
+  <!--导航条-->
+  <view class="navbar">
+    <text class="top_area">{{city}}</text>
+    <text wx:for="{{navbar}}" wx:key="unique" data-id="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" bindtap="navbarTap">{{item}}</text>
+    <image class='search' src="/icon/搜索.png"></image>
+  </view>
+  <!--热映-->
+  <view hidden="{{currentTab!==0}}">
+    <scroll-view scroll-y style="height: auto;">
+      <view class='connent' wx:for="{{movieInfo}}" wx:key="index" style=" display: flex;justify-content: space-between;padding:20rpx 20rpx 0 20rpx;">
+        <!-- 电影相关信息 -->
+        <view class="cover-main" style="width: 70%; height: auto; display: flex;justify-content: space-between;">
+          <!-- 电影封面 -->
+          <view>
+            <image class="cover-img " style="width: 180rpx; height: 225rpx;padding:0rpx 20rpx 0 0rpx; " mode="{{aspectFit}} " src="{{ip+item.video}} " bindtap="turnTo" data-idx='{{item._id}}'> </image>
+          </view>
+          <view style="padding:20rpx 0; line-height: 40rpx;">
+            <!-- 电影名 -->
+            <view class="info_name ">
+              <text style="font-size: 28rpx; font-weight: bold;color: #222222 ;letter-spacing:2rpx; ">{{item.name}}</text>
+            </view>
+            <!-- 电影类型 -->
+            <view class="info_type ">
+              <text style="font-size: 24rpx; color: #666666; ">{{item.type}}</text>
+            </view>
+            <!-- 演员 -->
+            <view class="info_actor">
+              <text style="font-size: 24rpx; color:#666666;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">主演：{{item.actor}}</text>
+            </view>
+            <!-- 上映时间 -->
+            <view class="info_show">
+              <text style="font-size: 24rpx; color:#666666;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{item.activeText}}</text>
+            </view>
+          </view>
+        </view>
+        <!-- 购票按钮和评分 -->
+        <view class="info " id="{{item._id}} " style="width: 20%; height: auto; ">
+          <view class="info_score " style="padding:20rpx 0 80rpx 0;">
+            <text style="font-size: 28rpx; color: #f4b73f;font-style:italic;">{{item.userscore}}<text style="font-size: 24rpx; color: #f4b73f;">分</text></text>
+          </view>
+          <view class="info_score ">
+            <block>
+              <button wx:if="{{item.state=='true'}}" size="mini" class="button-buy"> {{buyTickets}} </button>
+              <button wx:else size="mini" class="button-hover"> {{preSale}} </button>
+            </block>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <!--待映-->
+  <view hidden="{{currentTab!==1}}">
+    <view class="wait_text">近期最受欢迎</view>
+    <scroll-view class="scroll-view_H" scroll-x style="width: 100%">
+      <view class="wait_imgs" wx:for="{{movieInfo}}" wx:key="index" wx:if="{{item.state=='false'}}" class="cover_picture">
+
+        <!-- 电影封面 -->
+        <view class="cover-img ">
+          <image mode="{{aspectFit}} " src="{{ip+item.video}} "> </image>
+        </view>
+        <!-- 电影名 -->
+        <view class="info_name">
+          <text style="font-size: 24rpx; color: #222222 ;letter-spacing:2rpx; ">{{item.name}}</text>
+        </view>
+        <!-- 想看人数 -->
+        <view class="info_want">
+          <text>{{item.want}}人想看</text>
+        </view>
+        <!-- 上映日期 -->
+        <view class="info_date">
+          <text>{{item.show}}</text>
+        </view>
+      </view>
+    </scroll-view>
+
+    <scroll-view scroll-y style="height: auto;">
+      <view class='connent' wx:for="{{movieInfo}}" wx:key="index" wx:if="{{item.state=='false'}}" style=" display: flex;justify-content: space-between;padding:20rpx 20rpx 0 20rpx;">
+        <!-- 电影相关信息 -->
+        <view class="cover-main" style="width: 70%; height: auto; display: flex;justify-content: space-between;">
+          <!-- 电影封面 -->
+          <view>
+            <image class="cover-img " style="width: 180rpx; height: 225rpx;padding:0rpx 20rpx 0 0rpx; " mode="{{aspectFit}} " src="{{ip+item.video}} "> </image>
+          </view>
+          <view style="padding:20rpx 0; line-height: 40rpx;">
+            <!-- 电影名 -->
+            <view class="info_name ">
+              <text style="font-size: 28rpx; font-weight: bold;color: #222222 ;letter-spacing:2rpx; ">{{item.name}}</text>
+            </view>
+            <!-- 电影类型 -->
+            <view class="info_type ">
+              <text style="font-size: 24rpx; color: #666666; ">{{item.type}}</text>
+            </view>
+            <!-- 演员 -->
+            <view class="info_actor">
+              <text style="font-size: 24rpx; color:#666666;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">主演：{{item.actor}}</text>
+            </view>
+            <!-- 上映时间 -->
+            <view class="info_show">
+              <text style="font-size: 24rpx; color:#666666;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{item.activeText}}</text>
+            </view>
+          </view>
+        </view>
+        <!-- 购票按钮和评分 -->
+        <view class="info " id="{{item._id}} " style="width: 20%; height: auto; ">
+          <view class="info_score " style="padding:20rpx 0 80rpx 0;overflow: hidden; white-space: nowrap;text-overflow: ellipsis;width: 120rpx;">
+            <text style="font-size: 22rpx; color: #f4b73f;font-style:italic;">{{item.want}}<text style="font-size: 22rpx; color: #f4b73f;" >人想看</text></text>
+          </view>
+          <view class="info_score ">
+            <button size="mini" class="button-hover"> {{preSale}} </button>
+          </view>
+
+        </view>
+      </view>
+    </scroll-view>
+
+
+  </view>
+
+
+
+</view>

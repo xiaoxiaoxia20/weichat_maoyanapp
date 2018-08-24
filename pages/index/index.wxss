@@ -1,0 +1,115 @@
+/**index.wxss**/
+
+page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.connent {
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.navbar {
+  flex: none;
+  display: flex;
+  background: #fff;
+  color: #666;
+  font-size: 28rpx;
+  border-bottom: 1px solid #d8d8d8;
+  height: 80rpx;
+}
+
+.top_area {
+  margin-left: 20rpx;
+  /* margin-top: 15rpx; */
+  line-height: 80rpx;
+}
+
+.search {
+  width: 50rpx;
+  height: 50rpx;
+  border-left: 2rpx solid #d3d3d3;
+  padding: 20rpx 20rpx 10rpx 20rpx;
+}
+
+.info_name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 200rpx;
+}
+
+.info_actor {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 300rpx;
+}
+
+.navbar .item {
+  position: relative;
+  flex: auto;
+  text-align: center;
+  line-height: 80rpx;
+}
+
+.navbar .item.active {
+  /* width: 80rpx; */
+  color: #ef4238;
+}
+
+.navbar .item.active:after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 110rpx;
+  right: 0;
+  width: 80rpx;
+  height: 4rpx;
+  background: #ef4238;
+}
+
+.button-hover {
+  color: white;
+  background-color: #6baee6;
+}
+
+.button-buy {
+  color: white;
+  background-color: #ef4238;
+}
+
+/* 待映区域 */
+
+.wait_text {
+  font-size: 24rpx;
+  color: #666;
+  padding: 25rpx;
+}
+
+.scroll-view_H {
+  display: flex;
+  white-space: nowrap;
+}
+
+.cover_picture {
+  display: inline-block;
+  padding-bottom: 40rpx;
+  border-bottom: 10rpx solid #dcdcdc;
+}
+
+.cover-img image {
+  width: 180rpx;
+  height: 225rpx;
+}
+
+.info_date, .info_want {
+  font-size: 24rpx;
+  color: #666;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 160rpx;
+}
